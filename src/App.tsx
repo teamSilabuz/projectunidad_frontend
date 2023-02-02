@@ -1,13 +1,14 @@
 import React from 'react';
-import logo from './logo.svg';
 import './App.css';
-import { Routes, Route } from "react-router-dom";
-import { Gestor } from "./pages";
+import { Routes, Route, Navigate  } from "react-router-dom";
+import { Gestor, LoginPage} from "./pages";
 
 function App() {
   return (
     <Routes>
       <Route path="/home" element={<Gestor/>} />
+      <Route index  path="/login" element={<LoginPage/>}></Route>
+      <Route path="*" element={<Navigate to="/login" replace />}></Route>
     </Routes>
   );
 }
