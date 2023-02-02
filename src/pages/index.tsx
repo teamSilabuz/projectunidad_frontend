@@ -1,0 +1,1 @@
+export {Gestor} from "./Gestor"
