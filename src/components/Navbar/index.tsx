@@ -4,7 +4,7 @@ import "./Navbar.css"
 function Navbar(){
     const [isOpen, setIsOpen] = useState(false)
     return(
-        <div className="navbar">
+        <div className="navbar bg-dark text-center text-white">
             <div className="nav_logo"> NombreAPP</div>
             <div className={`nav_items ${isOpen && "open"}`}>
                 <a href="#"> Inicio</a>
