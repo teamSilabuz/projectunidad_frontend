@@ -1,13 +1,20 @@
 import "./Footer.css"
-
+import { SocialIcon } from 'react-social-icons';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { faGithub, faLinkedin } from "@fortawesome/free-brands-svg-icons";
 function Footer(){
     const year = new Date().getFullYear();
-    return <footer>
-    <ul>
-    <li><a href="mailto:julesforrest@gmail.com">Email</a></li>
-    <li><a href="https://github.com/julesforrest">Github</a></li>
-    {`Copyright © Upbeat Code ${year}`}
-    </ul>
-        </footer>;
+    return(
+<footer className="bg-dark text-center text-white">
+  <div className="container p-2">
+    <section className="mb-2">
+      Proyecto en Github
+      <a className="btn btn-outline-light btn-floating m-1" href="https://github.com/teamSilabuz" target="_blank" role="button"><FontAwesomeIcon icon={faGithub}/></a>
+    </section>
+    © {year} Copyright:
+    <a className="text-white" href="https://www.silabuz.com/"> Silabuz</a>
+  </div>
+</footer>
+    );
   };
 export default Footer;
