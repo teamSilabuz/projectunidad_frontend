@@ -1,21 +1,22 @@
 import React from "react";
-import Card from "./card";
+import GestorCard from "./card";
 import "./Card.css"
+
 function Cards() {
     return(
         <div className="container">
             <div className="row">
                 <div className="col-md-5">
-                    <Card/>
+                    <GestorCard/>
                 </div>
                 <div className="col-md-5">
-                    <Card/>
+                    <GestorCard/>
                 </div>
                 <div className="col-md-5">
-                    <Card/>
+                    <GestorCard/>
                 </div>
                 <div className="col-md-5">
-                    <Card/>
+                    <GestorCard/>
                 </div>
             </div>
         </div>
