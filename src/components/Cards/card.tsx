@@ -1,26 +1,26 @@
-import React, { useState } from "react";
-
+const styles ={
+    primary:{
+        background: "rgba(185, 128, 6, 0.2)"
+    }
+}
 function Card() {
     return (
         <div className="card">
             <div className="card-horizontal">
                 <div className="img-square-wrapper">
-                    <img className="" src="https://brandemia.org/sites/default/files/sites/default/files/google_icono_despues.jpg" alt="Card image cap" />
+                    <img className="" src="https://cdn.worldvectorlogo.com/logos/vercel.svg" alt="Card image cap" />
                 </div>
-                <div className="card-body">
-                    <h4 className="card-title">Nombre App</h4>
-                    <p className="card-text">Email: asada@gmail.com</p>
+                <div className="card-body" style={styles.primary}>
+                    <h4 className="card-title">Nombredaadsa App</h4>
+                    <p className="card-text">Email: asdasdaasada@gmail.com</p>
                 </div>
             </div>
-
-            <div className="card-footer">
+            <div className="card-footer bg-dark">
                 <div className="buttons">
-                    <div className="action_btn">
-                        <button name="submit" className="action_btn submit" type="submit" value="Save" >Change password</button>
-                        <button name="submit" className="action_btn cancel" >Enviar password</button>
-                    </div>
+                    <button  className="btn btn-primary" >Enviar password</button>
+                    <button  className="btn btn-info">Change password</button>
                 </div>
-                <small className="text-muted">Last updated: fecha de actualizacion</small>
+                <small className="text-white">Ultima vez modificado: fecha de actualizacion</small>
             </div>
         </div>
     );

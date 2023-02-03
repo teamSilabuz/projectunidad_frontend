@@ -1,7 +1,9 @@
 footer {
-    background-color: gray;
+    background-color: rgba(0, 0, 0, 0.2);
     display: block;
     text-align: initial;
     margin-top: auto;
-    padding: px;
+    padding: 1px;
+    
   }
+
