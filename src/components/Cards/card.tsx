@@ -9,6 +9,8 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faKey, faMailBulk, faServer, faUserCircle } from "@fortawesome/free-solid-svg-icons";
 import { faAccessibleIcon } from "@fortawesome/free-brands-svg-icons";
 import "./Card.css"
+import img3 from "../../images/password.jpg";
+import img4 from "../../images/smscorreo.png";
 
 const styles = {
     primary: {
@@ -40,8 +42,8 @@ function CardFunction() {
                 <Card.Title style={styles.body} >Nombredaadsasddasaa Appas</Card.Title>
                 <Card.Text style={styles.body}>
                     Email:sdasdaasafasdadsaddasda@gmail.com
-                </Card.Text><Button variant="primary" onClick={handleShow} ><FontAwesomeIcon icon={faKey} />Cambiar password</Button>{' '}
-                <Button variant="info" onClick={handleShowChange}><FontAwesomeIcon icon={faMailBulk} />Enviar password</Button>
+                </Card.Text><Button variant="primary" onClick={handleShow} ><FontAwesomeIcon icon={faKey} /> Cambiar password</Button>{' '}
+                <Button variant="info" onClick={handleShowChange}><FontAwesomeIcon icon={faMailBulk} /> Enviar password</Button>
             </Card.Body>
 
             <Card.Footer className="text-muted">
@@ -52,19 +54,19 @@ function CardFunction() {
                         </Modal.Title>
                     </Modal.Header>
                     <img
-                        src={img1}
-                        alt="img1"
-                        style={{ display: "block", margin: "0 auto" }}
+                        src={img4}
+                        alt="img4"
+                        style={{ height: '50%', width: '90%', display: "block", margin: "0 auto" }}
                     />
-                    <Modal.Body>Por donde quieres recibir tus credenciales?</Modal.Body>
                     <Modal.Footer>
+                    <Modal.Body> Recibe tus credenciales en : </Modal.Body>
                         <Button variant="secondary" className="btn btn-primary position-relative" onClick={handleCloseChange}>
                             SMS
                         </Button>
-                        <Button variant="secondary" onClick={handleCloseChange}>
+                        <Button variant="primary" onClick={handleCloseChange}>
                             Correo
                         </Button>
-                        <Button variant="primary" onClick={handleCloseChange}>
+                        <Button variant="danger" onClick={handleCloseChange}>
                             Salir
                         </Button>
                     </Modal.Footer>
@@ -79,17 +81,17 @@ function CardFunction() {
                         <Form>
                             <Form.Group className="mb-3" controlId="exampleForm.ControlInput1">
                                 <img
-                                    src={img2}
-                                    alt="img2"
-                                    style={{ display: "block", margin: "0 auto" }}
+                                    src={img3}
+                                    alt="img3"
+                                    style={{ height: '50%', width: '100%', display: "block", margin: "0 auto"  }}
                                 />
-                                <Form.Label>Cambiar password</Form.Label>
+                                <Modal.Title>Cambiar password : </Modal.Title>
                                 <Form.Control autoFocus type="password" />
                             </Form.Group>
                         </Form>
                     </Modal.Body>
                     <Modal.Footer>
-                        <Button variant="primary" onClick={handleClose}>
+                        <Button variant="danger" onClick={handleClose}>
                             Confirmar password
                         </Button>
                     </Modal.Footer>
