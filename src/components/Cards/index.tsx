@@ -1,33 +1,22 @@
-import React from "react";
-import Card from "./card"
+import CardFunction from "./card"
 import "./Card.css"
-
+import { Row } from "react-bootstrap";
 function Cards() {
     return(
-        <div className="container p-1">
-            <div className="row">
-
+    <Row xs={1} md={2} className="g-4">
                 <div className="col-md-4">
-                    <Card/>
+                    <CardFunction/>
                 </div>
                 <div className="col-md-4">
-                    <Card/>
+                    <CardFunction/>
                 </div>
                 <div className="col-md-4">
-                    <Card/>
+                    <CardFunction/>
                 </div>
                 <div className="col-md-4">
-                    <Card/>
+                    <CardFunction/>
                 </div>
-                <div className="col-md-4">
-                    <Card/>
-                </div>
-                <div className="col-md-4">
-                    <Card/>
-                </div>
-                
-            </div>
-        </div>
+        </Row>
     );
 };
 
