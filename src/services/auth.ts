@@ -17,13 +17,21 @@ export const login = ( email: string, password: string) => {
     });
 };
 export const register = (name: string, phone_number:string, email: string, password: string,  re_password:string | undefined) => {
-  const rol_user =  'prueba';
   return axios.post(API_URL + "registro", {
     name,
     phone_number,
     email,
     password,
-    re_password,
-    rol_user
+    re_password
   });
+};
+export const logout = () => {
+  localStorage.removeItem("user");
+};
+
+export const getCurrentUser = () => {
+  const userStr = localStorage.getItem("user");
+  if (userStr) return JSON.parse(userStr);
+
+  return null;
 };
