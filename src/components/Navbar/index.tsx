@@ -1,29 +1,32 @@
-import React, {useState} from "react";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { getCurrentUser, logout } from "../../services/auth";
 import "./Navbar.css"
-import { Buffer } from 'buffer';
-function Navbar(){
-    const [isOpen, setIsOpen] = useState(false)
-    const obj = JSON.parse(atob(getCurrentUser().split('.')[1]))
-    //const username= Buffer.from(getCurrentUser().split('.')[1],"base64")   
-    function handleLogout (){
+import { faSignOut, faUserCheck, faUserCircle } from "@fortawesome/free-solid-svg-icons";
+import Dropdown from 'react-bootstrap/Dropdown';
+import "./Navbar.css";
+
+function Navbar() {
+    //const obj = JSON.parse(atob(getCurrentUser().split('.')[1]));
+    function handleLogout() {
         logout();
-        window.location.reload(); 
+        window.location.reload();
     }
-    return(
-        <div className="navbar bg-dark text-center text-white">
-            <div className="nav_logo"> NombreAPP</div>
-            <div className={`nav_items ${isOpen && "open"}`}>
-                <a href="#"> Inicio</a>
-                <p className="d-inline mx-2">{obj.email}</p>
-                <button className=" mb-2 btn btn-outline-secondary" type="submit" onClick={handleLogout}> Cerrar Sesion</button>
+    return (
+        <Dropdown>
+            <div className="navbar bg-dark text-center text-white">
+                <div className="nav_logo"> <p className="d-inline mx-2">NombreUSUARIO</p></div>
+                <div className="nav_items">
+                    <Dropdown.Toggle variant="success" id="dropdown-basic">
+                        <FontAwesomeIcon icon={faUserCircle} /> Gestor
+                    </Dropdown.Toggle>
+                </div>
             </div>
-            <div className={`nav_toggle ${isOpen && "open"}`} onClick={ () => setIsOpen(!isOpen)} >
-                <span></span>
-                <span></span>
-                <span></span>
-            </div>
-        </div>
+            <Dropdown.Menu>
+                <Dropdown.Item href="<ProfileUser/>"><FontAwesomeIcon icon={faUserCheck} /> Perfil de Usuario</Dropdown.Item>
+                <Dropdown.Item href="<LoginPage/>"><FontAwesomeIcon icon={faSignOut} />Cerrar Sesion</Dropdown.Item>
+            </Dropdown.Menu>
+        </Dropdown>
     );
 }
+
 export default Navbar;

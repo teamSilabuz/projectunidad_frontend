@@ -1,13 +1,22 @@
 img {
-    width: 150px;
-    height: 140px;
+    width: 140px;
+    height: 150px;
     object-fit: contain;
   }
-.card-horizontal {
-    display: flex;
-    flex: 1 1 auto;
-    max-width: fit-content;
+
+  title{
+    text-align: left;
   }
+
 .card {
-  width: 380px;
+    border-style: solid;
+    border-color: black;
+    margin-top: 10px;
+    margin-left: 10px;
+    margin-bottom: 30px;
+    margin-right: 10px;
+  } 
+
+.Row{
+  display: flex;
 }

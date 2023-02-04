@@ -2,6 +2,7 @@ import "./Footer.css"
 import { SocialIcon } from 'react-social-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faGithub, faLinkedin } from "@fortawesome/free-brands-svg-icons";
+
 function Footer(){
     const year = new Date().getFullYear();
     return(
