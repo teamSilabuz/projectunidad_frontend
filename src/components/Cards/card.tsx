@@ -85,21 +85,18 @@ function CardFunction() {
                                     alt="img3"
                                     style={{ height: '50%', width: '100%', display: "block", margin: "0 auto"  }}
                                 />
-                                <Modal.Title>Cambiar password : </Modal.Title>
+                                <Modal.Title> Cambiar password <FontAwesomeIcon icon={faKey}/> :  </Modal.Title> 
                                 <Form.Control autoFocus type="password" />
                             </Form.Group>
                         </Form>
                     </Modal.Body>
                     <Modal.Footer>
-                        <Button variant="danger" onClick={handleClose}>
-                            Confirmar password
-                        </Button>
+                        <Button variant="danger" onClick={handleClose} > <FontAwesomeIcon icon={faKey} /> Confirmar nuevo password</Button>
                     </Modal.Footer>
                 </Modal>
                 <small className="text-muted">Ultima vez modificado: fecha de actualizacion</small>
             </Card.Footer>
         </Card>
-
     );
 };
 
