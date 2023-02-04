@@ -14,10 +14,13 @@
     color: white;
 }
 .nav_items a{
-    margin: 15px;
     color: black;
-    position: initial;
+    position: inherit;
     text-decoration: none;
 }
 
+.toggle {
+    margin-bottom: 15px ;
+    margin-right: 15px;
+}
 
