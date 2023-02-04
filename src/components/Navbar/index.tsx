@@ -1,12 +1,10 @@
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { getCurrentUser, logout } from "../../services/auth";
 import Offcanvas from 'react-bootstrap/Offcanvas';
 import { faEnvelope, faIdCard, faMailForward, faPhone, faSignOut, faUserCheck, faUserCircle, faUserEdit } from "@fortawesome/free-solid-svg-icons";
 import Dropdown from 'react-bootstrap/Dropdown';
 import "./Navbar.css";
 import { useState } from "react";
-
-
+import { getCurrentUser, logout } from "../../services/auth";
 
 function Navbar() {
     //agregado anthony
@@ -17,10 +15,8 @@ function Navbar() {
     function handleLogout() {
         logout();
         window.location.reload();
-
     }
-
-
+    
     return (
         <Dropdown>
             <div className="navbar bg-dark text-center text-white">

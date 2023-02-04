@@ -34,7 +34,7 @@ const Login: React.FC<Props> = () =>{
               const resMessage =
                 (error.response &&
                   error.response.data &&
-                  error.response.data.error) ||
+                  error.response.data.message) ||
                 error.message ||
                 error.toString();
       
