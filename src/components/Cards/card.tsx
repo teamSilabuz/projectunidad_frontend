@@ -6,7 +6,7 @@ import img1 from '../../images/credencial.png';
 import img2 from "../../images/candado1.jpg"
 import Card from 'react-bootstrap/Card';
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faKey, faMailBulk, faServer, faUserCircle } from "@fortawesome/free-solid-svg-icons";
+import { faKey, faMailBulk, faServer, faUserCircle, faCommentSms, faEnvelope, faX, faArrowTurnRight} from "@fortawesome/free-solid-svg-icons";
 import { faAccessibleIcon } from "@fortawesome/free-brands-svg-icons";
 import "./Card.css"
 import img3 from "../../images/password.jpg";
@@ -35,7 +35,6 @@ function CardFunction() {
     const handleShow = () => setShow(true);
 
     return (
-
         <Card className="card" style={{ width: '26rem' }}>
             <Card.Img variant="" src="https://cdn.worldvectorlogo.com/logos/vercel.svg" />
             <Card.Body>
@@ -58,17 +57,14 @@ function CardFunction() {
                         alt="img4"
                         style={{ height: '50%', width: '90%', display: "block", margin: "0 auto" }}
                     />
+                    <Modal.Title>  Recibe tus credenciales en : </Modal.Title>
                     <Modal.Footer>
-                    <Modal.Body> Recibe tus credenciales en : </Modal.Body>
                         <Button variant="secondary" className="btn btn-primary position-relative" onClick={handleCloseChange}>
-                            SMS
-                        </Button>
-                        <Button variant="primary" onClick={handleCloseChange}>
-                            Correo
-                        </Button>
-                        <Button variant="danger" onClick={handleCloseChange}>
-                            Salir
-                        </Button>
+                            <FontAwesomeIcon icon={faCommentSms}/> SMS </Button>
+                        <Button variant="primary" onClick={handleCloseChange}> 
+                        <FontAwesomeIcon icon={faEnvelope}/> Correo </Button>
+                        <Button variant="danger" onClick={handleCloseChange}> 
+                        <FontAwesomeIcon icon={faX}/> Salir </Button>
                     </Modal.Footer>
                 </Modal>
 
@@ -101,3 +97,6 @@ function CardFunction() {
 };
 
 export default CardFunction;
+
+// faCommentSms
+// faEnvelope
