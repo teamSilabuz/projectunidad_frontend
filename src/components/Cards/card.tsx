@@ -57,7 +57,7 @@ function CardFunction() {
                         alt="img4"
                         style={{ height: '50%', width: '90%', display: "block", margin: "0 auto" }}
                     />
-                    <Modal.Title>  Recibe tus credenciales en : </Modal.Title>
+                    <Modal.Title> <FontAwesomeIcon icon={faArrowTurnRight}/> Recibe tus credenciales en : </Modal.Title>
                     <Modal.Footer>
                         <Button variant="secondary" className="btn btn-primary position-relative" onClick={handleCloseChange}>
                             <FontAwesomeIcon icon={faCommentSms}/> SMS </Button>
