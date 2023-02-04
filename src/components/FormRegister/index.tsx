@@ -74,7 +74,7 @@ const Register: React.FC<Props> = () =>{
         <div className="container h-100">
           <div className="row justify-content-sm-center h-100">
             <div className="col-xxl-5 col-xl-8 col-lg-8 col-md-9 col-sm-9">
-              <div className="card shadow-lg">
+              <div className="card shadow-lg w-100">
                 <div className="card-body p-5">
                   <h1 className="fs-4 card-title fw-bold mb-4">Registrar Cuenta</h1>
                   <Formik
