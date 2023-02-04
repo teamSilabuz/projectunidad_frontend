@@ -10,7 +10,7 @@ function App() {
   const current_user = getCurrentUser();
   return (
     <Routes>
-      <Route element={<ProtectedRoute user={current_user} />}>
+       <Route element={<ProtectedRoute user={current_user} />}>
         <Route path="/home" element={<Gestor/>} />
         <Route path="/external-credential" element={<ExtCredentialPage/>} />
       </Route>

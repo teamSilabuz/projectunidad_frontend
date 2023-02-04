@@ -69,7 +69,7 @@ const ExtCredential: React.FC<Props> = () =>{
                                 </div>
                             </div>
                         )}
-                    <form method="post" onSubmit={handleExtCredent} className="row mb-5">
+                    <form method="post" onSubmit={handleExtCredent} className="row mb-2">
                     <div className="col-12">
                     <label htmlFor="exampleFormControlInput1" className="form-label d-flex">URL:</label>
                         <input type="text" name="url" className="form-control" id="url" value={formData.url} onChange={handleInputChange}/>
@@ -89,7 +89,7 @@ const ExtCredential: React.FC<Props> = () =>{
                         value={formData.password_ext}onChange={handleInputChange}/>
                     </div>
                     
-                    <div className="col-12 mt-5 ">
+                    <div className="col-12 mt-4 ">
                       <div className="d-flex justify-content-end">
                         <button type="submit" className="btn btn-primary me-2">Añadir</button>
                         <a href="/home" className="btn btn-secondary">Cancelar</a>
