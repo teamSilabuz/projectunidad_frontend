@@ -10,6 +10,7 @@ import "./Card.css"
 import img3 from "../../images/password.jpg";
 import img4 from "../../images/smscorreo.png";
 import axios from 'axios';
+import Swal from "sweetalert2";
 
 
 const styles = {
@@ -45,17 +46,25 @@ function CardFunction() {
     
     const handleSubmit = (event: any) => {
         event.preventDefault();
-        console.log(id_credencial, password, rePassword);
         axios.put('http://localhost:8000/api/v1/user/updatepassexterno', {
           id_credencial,
           password,
           re_password: rePassword,
         })
         .then((response) => {
-          console.log(response.data);
+            Swal.fire(
+                'Buen trabajo!',
+                'Se actualizo tu contraseña!',
+                'success'
+              )
+            
         })
         .catch((error) => {
-          console.error(error);
+        Swal.fire({
+            icon: 'error',
+            title: 'Oops...',
+            text: 'Algo salio mal!',
+            })
         });
       };
     
