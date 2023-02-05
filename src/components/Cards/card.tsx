@@ -34,6 +34,23 @@ function CardFunction() {
     const handleClose = () => setShow(false);
     const handleShow = () => setShow(true);
 
+
+    const passwordInput1 = document.getElementById("passwordInput1");
+    const passwordInput2 = document.getElementById("passwordInput2");
+    const errorMessage = document.getElementById("errorMessage");
+
+    const [password, setPassword] = useState("");
+    const [confirmPassword, setConfirmPassword] = useState("");
+    const [error, setError] = useState(null);
+
+    const handleSubmit = (event: any) => {
+    event.preventDefault();
+    if (password !== confirmPassword) {
+        alert("Passwords no son iguales");
+    } else {
+    }
+    };
+
     return (
         <Card className="card" style={{ width: '26rem' }}>
             <Card.Img variant="" src="https://cdn.worldvectorlogo.com/logos/vercel.svg" />
@@ -72,22 +89,35 @@ function CardFunction() {
                     </Modal.Header>
 
                     <Modal.Body>
-                        <Form>
-                            <Form.Group className="mb-3" controlId="exampleForm.ControlInput1">
-                                <img
+                        <Form onSubmit={handleSubmit}>
+                            <Form.Group controlId="exampleForm.ControlInput1">
+                            <img
                                     src={img3}
                                     alt="img3"
                                     style={{ height: '50%', width: '100%', display: "block", margin: "0 auto"  }}
                                 />
-                                <Modal.Title> Cambiar password <FontAwesomeIcon icon={faKey}/> :  </Modal.Title> 
-                                <Form.Control autoFocus type="password" />
+                            <Modal.Title>Enter password <FontAwesomeIcon icon={faKey} />:</Modal.Title>
+                            <Form.Control
+                                autoFocus
+                                type="password"
+                                value={password}
+                                onChange={(e) => setPassword(e.target.value)}
+                            />
+                            <Modal.Title>Confirm password:</Modal.Title>
+                            <Form.Control
+                                autoFocus
+                                type="password"
+                                value={confirmPassword}
+                                onChange={(e) => setConfirmPassword(e.target.value)}
+                            />
+                            {error && <p style={{ color: "red" }}>{error}</p>}
                             </Form.Group>
+                            <Button type="submit"> <FontAwesomeIcon icon={faKey}/> Confirmar nuevo password  </Button> {' '}
+                            <Button variant="danger" onClick={handleClose}> <FontAwesomeIcon icon={faX}/> Cancelar </Button>
                         </Form>
+                        
                     </Modal.Body>
-                    <Modal.Footer>
-                        <Button variant="primary" onClick={handleClose} > <FontAwesomeIcon icon={faKey} /> Confirmar nuevo password</Button>
-                        <Button variant="danger" onClick={handleClose}> <FontAwesomeIcon icon={faX}/> Cancelar </Button>
-                    </Modal.Footer>
+                    
                 </Modal>
                 <small className="text-muted">Ultima vez modificado: fecha de actualizacion</small>
             </Card.Footer>
