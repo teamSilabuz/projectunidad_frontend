@@ -16,6 +16,7 @@ export const login = ( email: string, password: string) => {
       return response.data;
     });
 };
+
 export const register = (name: string, phone_number:string, email: string, password: string,  re_password:string | undefined) => {
   return axios.post(API_URL + "registro", {
     name,
@@ -25,6 +26,7 @@ export const register = (name: string, phone_number:string, email: string, passw
     re_password
   });
 };
+
 export const logout = () => {
   localStorage.removeItem("user");
 };

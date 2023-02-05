@@ -2,8 +2,6 @@ import React, { useState } from "react";
 import Button from 'react-bootstrap/Button';
 import Modal from 'react-bootstrap/Modal';
 import Form from 'react-bootstrap/Form';
-import img1 from '../../images/credencial.png';
-import img2 from "../../images/candado1.jpg"
 import Card from 'react-bootstrap/Card';
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faKey, faMailBulk, faServer, faUserCircle, faCommentSms, faEnvelope, faX, faArrowTurnRight, faUserLock} from "@fortawesome/free-solid-svg-icons";
@@ -11,6 +9,9 @@ import { faAccessibleIcon } from "@fortawesome/free-brands-svg-icons";
 import "./Card.css"
 import img3 from "../../images/password.jpg";
 import img4 from "../../images/smscorreo.png";
+import axios from 'axios';
+import Swal from "sweetalert2";
+
 
 const styles = {
     primary: {
@@ -33,6 +34,41 @@ function CardFunction() {
     const [show, setShow] = useState(false);
     const handleClose = () => setShow(false);
     const handleShow = () => setShow(true);
+
+    const errorMessage = document.getElementById("errorMessage");
+
+    const [error, setError] = useState(null);
+    
+    
+    const [password, setPassword] = useState('');
+    const [rePassword, setRePassword] = useState('');
+    const id_credencial = 2
+    
+    const handleSubmit = (event: any) => {
+        event.preventDefault();
+        axios.put('http://localhost:8000/api/v1/user/updatepassexterno', {
+          id_credencial,
+          password,
+          re_password: rePassword,
+        })
+        .then((response) => {
+            Swal.fire(
+                'Buen trabajo!',
+                'Se actualizo tu contraseña!',
+                'success'
+              )
+            
+        })
+        .catch((error) => {
+        Swal.fire({
+            icon: 'error',
+            title: 'Oops...',
+            text: 'Algo salio mal!',
+            })
+        });
+      };
+    
+
 
     return (
         <Card className="card" style={{ width: '26rem' }}>
@@ -72,22 +108,38 @@ function CardFunction() {
                     </Modal.Header>
 
                     <Modal.Body>
-                        <Form>
-                            <Form.Group className="mb-3" controlId="exampleForm.ControlInput1">
-                                <img
+                        <Form 
+                            onSubmit={handleSubmit} 
+                        >
+                            <Form.Group controlId="password">
+                            <img
                                     src={img3}
                                     alt="img3"
                                     style={{ height: '50%', width: '100%', display: "block", margin: "0 auto"  }}
                                 />
-                                <Modal.Title> Cambiar password <FontAwesomeIcon icon={faKey}/> :  </Modal.Title> 
-                                <Form.Control autoFocus type="password" />
+                            
+                            <Modal.Title>Escribir nuevo password <FontAwesomeIcon icon={faKey} />:</Modal.Title>
+                            <Form.Control
+                                autoFocus
+                                type="password"
+                                value={password}
+                                onChange={(e) => setPassword(e.target.value)}
+                            />
+                            <Modal.Title>Confirmar password:</Modal.Title>
+                            <Form.Control
+                                autoFocus
+                                type="password"
+                                value={rePassword}
+                                onChange={(e) => setRePassword(e.target.value)}
+                            />
+                            {error && <p style={{ color: "red" }}>{error}</p>}
+                            <Button type="submit"> <FontAwesomeIcon icon={faKey}/> Confirmar nuevo password  </Button> {' '}
                             </Form.Group>
+                            <Button variant="danger" onClick={handleClose}> <FontAwesomeIcon icon={faX}/> Cancelar </Button>
                         </Form>
+                        
                     </Modal.Body>
-                    <Modal.Footer>
-                        <Button variant="primary" onClick={handleClose} > <FontAwesomeIcon icon={faKey} /> Confirmar nuevo password</Button>
-                        <Button variant="danger" onClick={handleClose}> <FontAwesomeIcon icon={faX}/> Cancelar </Button>
-                    </Modal.Footer>
+                    
                 </Modal>
                 <small className="text-muted">Ultima vez modificado: fecha de actualizacion</small>
             </Card.Footer>
