@@ -11,10 +11,10 @@ function App() {
   return (
     <Routes>
        <Route element={<ProtectedRoute user={current_user} />}>
-        <Route path="/home" element={<Gestor/>} />
         <Route path="/external-credential" element={<ExtCredentialPage/>} />
       </Route>
       <Route element={<PublicRoute user={current_user} />}>
+        <Route path="/home" element={<Gestor/>} />
         <Route index  path="/login" element={<LoginPage/>}></Route>
         <Route path="/register" element={<RegisterPage/>}></Route>
         <Route path="" element={<Navigate to="/login" replace />}></Route>
