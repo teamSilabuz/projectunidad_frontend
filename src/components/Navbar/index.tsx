@@ -22,8 +22,10 @@ function Navbar() {
     const [email, setEmail] = useState('');
     const [phoneNumber, setPhoneNumber] = useState('');
 
+    const url = String(process.env.REACT_APP_DOMAIN_API) + "/user/perfil"
+
     useEffect(() => {
-        axios.get('http://localhost:8000/api/v1/user/perfil')
+        axios.get(url)
         .then(response => {
             setName(response.data.message.name);
             setEmail(response.data.message.email);
