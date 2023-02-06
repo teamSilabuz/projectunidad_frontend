@@ -1,16 +1,18 @@
 import React, { useState } from "react";
+import axios from 'axios';
+import Swal from "sweetalert2";
 import Button from 'react-bootstrap/Button';
 import Modal from 'react-bootstrap/Modal';
 import Form from 'react-bootstrap/Form';
 import Card from 'react-bootstrap/Card';
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faKey, faMailBulk, faServer, faUserCircle, faCommentSms, faEnvelope, faX, faArrowTurnRight, faUserLock} from "@fortawesome/free-solid-svg-icons";
-import { faAccessibleIcon } from "@fortawesome/free-brands-svg-icons";
+import { faKey, faMailBulk, faCommentSms, faEnvelope, faX, faArrowTurnRight, faUserLock} from "@fortawesome/free-solid-svg-icons";
 import "./Card.css"
 import img3 from "../../images/password.jpg";
 import img4 from "../../images/smscorreo.png";
-import axios from 'axios';
-import Swal from "sweetalert2";
+
+import { sendEmail, sendSMS } from "../../services/boot";
+import { getCurrentUser } from "../../services/auth";
 
 
 const styles = {
@@ -28,22 +30,72 @@ const styles = {
 function CardFunction() {
 
     const [showChange, setShowChange] = useState(false);
-    const handleCloseChange = () => setShowChange(false);
+    const handleCloseChange = () => {setShowChange(false); setMessage("");}
     const handleShowChange = () => setShowChange(true);
 
     const [show, setShow] = useState(false);
     const handleClose = () => setShow(false);
     const handleShow = () => setShow(true);
 
-    const errorMessage = document.getElementById("errorMessage");
+    const [successful, setSuccessful] = useState<boolean>(false);
+    const [message, setMessage] = useState<string>("");
 
     const [error, setError] = useState(null);
     
-    
+    const obj = JSON.parse(atob(getCurrentUser().split('.')[1]));
+
+    const dataBoot={
+        id_user: obj.id,
+        id_credencial:21
+    }
+
     const [password, setPassword] = useState('');
     const [rePassword, setRePassword] = useState('');
     const id_credencial = 2
-    
+
+    const handleSendSMS= (event: React.FormEvent<HTMLFormElement>) => { 
+        event.preventDefault();
+             
+        sendSMS(dataBoot).then(
+            () => {
+              setMessage("Se envieron tus credenciales a tu número telefónico");
+              setSuccessful(true);
+            },
+            (error) => {
+              const resMessage =
+                (error.response &&
+                  error.response.data &&
+                  error.response.data.error) ||
+                error.message ||
+                error.toString();
+      
+              setMessage(resMessage);
+              setSuccessful(false);
+            }
+        );
+    }
+    const handleSendEmail= (event: React.FormEvent<HTMLFormElement>)=>{
+        event.preventDefault();
+        
+        sendEmail(dataBoot,false).then(
+            () => {
+              setMessage("Credenciales enviados con éxito. Revise su bandeja de correo electronico.");
+              setSuccessful(true);
+            },
+            (error) => {
+              const resMessage =
+                (error.response &&
+                  error.response.data &&
+                  error.response.data.error) ||
+                error.message ||
+                error.toString();
+      
+              setMessage(resMessage);
+              setSuccessful(false);
+            }
+        );
+    }
+ 
     const handleSubmit = (event: any) => {
         event.preventDefault();
         axios.put('http://localhost:8000/api/v1/user/updatepassexterno', {
@@ -69,7 +121,6 @@ function CardFunction() {
       };
     
 
-
     return (
         <Card className="card" style={{ width: '26rem' }}>
             <Card.Img variant="" src="https://cdn.worldvectorlogo.com/logos/vercel.svg" />
@@ -82,10 +133,19 @@ function CardFunction() {
             </Card.Body>
 
             <Card.Footer className="text-muted">
-                <Modal show={showChange} onHide={handleCloseChange}>
+                <Modal show={showChange} onHide={handleCloseChange}>              
                     <Modal.Header closeButton>
-                        <Modal.Title> Credenciales <FontAwesomeIcon icon={faUserLock} /> </Modal.Title>
+                        <Modal.Title> Credenciales <FontAwesomeIcon icon={faUserLock} /> </Modal.Title>                         
                     </Modal.Header>
+                    <div>
+                        {message && (
+                            <div className="form-group m-3 ">
+                                <div className={successful ? "alert alert-success" : "alert alert-danger"} role="alert">
+                                {message}
+                                </div>
+                            </div>
+                        )}
+                    </div>
                     <img
                         src={img4}
                         alt="img4"
@@ -93,10 +153,15 @@ function CardFunction() {
                     />
                     <Modal.Title> <FontAwesomeIcon icon={faArrowTurnRight}/> Recibe tus credenciales en : </Modal.Title>
                     <Modal.Footer>
-                        <Button variant="secondary" className="btn btn-primary position-relative" onClick={handleCloseChange}>
+                        <form method="post" onSubmit={handleSendSMS}>
+                        <Button type="submit" variant="secondary" className="btn btn-primary position-relative">
                             <FontAwesomeIcon icon={faCommentSms}/> SMS </Button>
-                        <Button variant="primary" onClick={handleCloseChange}> 
+                        </form>
+                        <form  method="post" onSubmit={handleSendEmail}>
+                        <Button type="submit" variant="primary"> 
                         <FontAwesomeIcon icon={faEnvelope}/> Correo </Button>
+                        </form>
+                        
                         <Button variant="danger" onClick={handleCloseChange}> 
                         <FontAwesomeIcon icon={faX}/> Salir </Button>
                     </Modal.Footer>
