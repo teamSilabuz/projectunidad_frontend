@@ -1,6 +1,6 @@
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import Offcanvas from 'react-bootstrap/Offcanvas';
-import { faEnvelope, faIdCard, faMailForward, faPhone, faSignOut, faUserCheck, faUserCircle, faUserEdit } from "@fortawesome/free-solid-svg-icons";
+import { faAdd, faEnvelope, faIdCard, faMailForward, faPhone, faSignOut, faUserCheck, faUserCircle, faUserEdit } from "@fortawesome/free-solid-svg-icons";
 import Dropdown from 'react-bootstrap/Dropdown';
 import "./Navbar.css";
 import { useState, useEffect } from "react";
@@ -36,8 +36,6 @@ function Navbar() {
         });
     }, []);
 
-
-
     return (
         <Dropdown>
             <div className="navbar bg-dark text-center text-white">
@@ -67,7 +65,8 @@ function Navbar() {
 
                     </Offcanvas.Body>
                 </Offcanvas>
-                <Dropdown.Item href="login"><FontAwesomeIcon icon={faSignOut} />Cerrar Sesion</Dropdown.Item>
+                <Dropdown.Item href="/external-credential"><FontAwesomeIcon icon={faAdd} /> Añadir credencial nueva</Dropdown.Item>
+                <Dropdown.Item href="login"><FontAwesomeIcon icon={faSignOut} /> Cerrar Sesion</Dropdown.Item>
             </Dropdown.Menu>
         </Dropdown>
     );
