@@ -26,7 +26,7 @@ const styles = {
     }
 }
 
-export const CardFunction: React.FC<Props> = ({ credencial,usuario }) => {
+export const CardFunction: React.FC<Props> = ({ credencial}) => {
 
     const [showChange, setShowChange] = useState(false);
     const handleCloseChange = () => { setShowChange(false); setMessage(""); }
@@ -44,7 +44,7 @@ export const CardFunction: React.FC<Props> = ({ credencial,usuario }) => {
     const obj = JSON.parse(atob(getCurrentUser().split('.')[1]));
 
     const dataBoot = {
-        id_user: usuario,
+        id_user: obj.id,
         id_credencial: credencial.id
     }
 

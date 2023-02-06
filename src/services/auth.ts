@@ -1,6 +1,6 @@
 import axios from "axios";
 
-const API_URL = String(process.env.REACT_APP_DOMAIN_API + "/user/")
+const API_URL =process.env.REACT_APP_API_USER
 
 export const login = ( email: string, password: string) => {
   return axios
