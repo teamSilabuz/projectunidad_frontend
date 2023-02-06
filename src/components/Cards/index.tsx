@@ -5,7 +5,6 @@ import React, { useState, useEffect } from "react";
 import { Response, CredencialExterna } from "../../interfaces/credenciales";
 import { getCurrentUser } from "../../services/auth";
 
-
 export const Cards: React.FC = () => {
     const API_URL = process.env.REACT_APP_API_EXT_CARD
     const obj = JSON.parse(atob(getCurrentUser().split('.')[1]));
@@ -20,11 +19,13 @@ export const Cards: React.FC = () => {
     return (
         <Row xs={1} md={2} className="g-1">
 
-            {credenciales.map(credencial => (
+            {credenciales.map((credencial,usuario) => (
                 <div className="col-md-4">
-                    <CardFunction key={credencial.id} credencial={credencial} />
+                    <CardFunction key={credencial.id} credencial={credencial} usuario={obj.id}/>
                 </div>
             ))}
+
+
         </Row>
     );
 };
