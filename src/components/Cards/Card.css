@@ -11,10 +11,11 @@ img {
 .card {
     border-style: solid;
     border-color: black;
-    margin-top: 10px;
-    margin-left: 10px;
+    margin-top: 20px;
+    margin-left: auto;
     margin-bottom: 30px;
-    margin-right: 10px;
+    margin-block: 20px;
+    margin-inline: 20px;
   } 
 
 .Row{
