@@ -96,9 +96,10 @@ function CardFunction() {
         );
     }
  
+    const urlUpdatePassExterno = String(process.env.REACT_APP_DOMAIN_API) + "/user/updatepassexterno"
     const handleSubmit = (event: any) => {
         event.preventDefault();
-        axios.put('http://localhost:8000/api/v1/user/updatepassexterno', {
+        axios.put(urlUpdatePassExterno, {
           id_credencial,
           password,
           re_password: rePassword,
