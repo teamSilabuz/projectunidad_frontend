@@ -11,6 +11,8 @@ import { faAccessibleIcon } from "@fortawesome/free-brands-svg-icons";
 import "./Card.css"
 import img3 from "../../images/password.jpg";
 import img4 from "../../images/smscorreo.png";
+import { sendEmail, sendSMS } from "../../services/boot";
+import { getCurrentUser } from "../../services/auth";
 
 const styles = {
     primary: {
@@ -27,12 +29,64 @@ const styles = {
 function CardFunction() {
 
     const [showChange, setShowChange] = useState(false);
-    const handleCloseChange = () => setShowChange(false);
+    const handleCloseChange = () => {setShowChange(false); setMessage("");}
     const handleShowChange = () => setShowChange(true);
 
     const [show, setShow] = useState(false);
     const handleClose = () => setShow(false);
     const handleShow = () => setShow(true);
+
+    const obj = JSON.parse(atob(getCurrentUser().split('.')[1]));
+    const [successful, setSuccessful] = useState<boolean>(false);
+    const [message, setMessage] = useState<string>("");
+
+    const dataBoot={
+        id_user: obj.id,
+        id_credencial:21
+    }
+
+    const handleSendSMS= (event: React.FormEvent<HTMLFormElement>) => { 
+        event.preventDefault();
+             
+        sendSMS(dataBoot).then(
+            () => {
+              setMessage("Se envieron tus credenciales a tu número telefónico");
+              setSuccessful(true);
+            },
+            (error) => {
+              const resMessage =
+                (error.response &&
+                  error.response.data &&
+                  error.response.data.error) ||
+                error.message ||
+                error.toString();
+      
+              setMessage(resMessage);
+              setSuccessful(false);
+            }
+        );
+    }
+    const handleSendEmail= (event: React.FormEvent<HTMLFormElement>)=>{
+        event.preventDefault();
+        setMessage("email click");
+        sendEmail(dataBoot,false).then(
+            () => {
+              setMessage("Credenciales enviados con éxito. Revise su bandeja de correo electronico.");
+              setSuccessful(true);
+            },
+            (error) => {
+              const resMessage =
+                (error.response &&
+                  error.response.data &&
+                  error.response.data.error) ||
+                error.message ||
+                error.toString();
+      
+              setMessage(resMessage);
+              setSuccessful(false);
+            }
+        );
+    }
 
     return (
         <Card className="card" style={{ width: '26rem' }}>
@@ -46,10 +100,19 @@ function CardFunction() {
             </Card.Body>
 
             <Card.Footer className="text-muted">
-                <Modal show={showChange} onHide={handleCloseChange}>
+                <Modal show={showChange} onHide={handleCloseChange}>              
                     <Modal.Header closeButton>
-                        <Modal.Title> Credenciales <FontAwesomeIcon icon={faUserLock} /> </Modal.Title>
+                        <Modal.Title> Credenciales <FontAwesomeIcon icon={faUserLock} /> </Modal.Title>                         
                     </Modal.Header>
+                    <div>
+                        {message && (
+                            <div className="form-group m-3 ">
+                                <div className={successful ? "alert alert-success" : "alert alert-danger"} role="alert">
+                                {message}
+                                </div>
+                            </div>
+                        )}
+                    </div>
                     <img
                         src={img4}
                         alt="img4"
@@ -57,10 +120,15 @@ function CardFunction() {
                     />
                     <Modal.Title> <FontAwesomeIcon icon={faArrowTurnRight}/> Recibe tus credenciales en : </Modal.Title>
                     <Modal.Footer>
-                        <Button variant="secondary" className="btn btn-primary position-relative" onClick={handleCloseChange}>
+                        <form method="post" onSubmit={handleSendSMS}>
+                        <Button type="submit" variant="secondary" className="btn btn-primary position-relative">
                             <FontAwesomeIcon icon={faCommentSms}/> SMS </Button>
-                        <Button variant="primary" onClick={handleCloseChange}> 
+                        </form>
+                        <form  method="post" onSubmit={handleSendEmail}>
+                        <Button type="submit" variant="primary"> 
                         <FontAwesomeIcon icon={faEnvelope}/> Correo </Button>
+                        </form>
+                        
                         <Button variant="danger" onClick={handleCloseChange}> 
                         <FontAwesomeIcon icon={faX}/> Salir </Button>
                     </Modal.Footer>

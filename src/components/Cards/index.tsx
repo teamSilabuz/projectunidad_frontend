@@ -5,7 +5,7 @@ function Cards() {
     return (
         <Row xs={1} md={2} className="g-4">
             {Array.from({ length: 3 }).map((_, idx) => (
-            <div className="col-md-4">
+            <div key={1} className="col-md-4">
                 <CardFunction />
             </div>
              ))}
