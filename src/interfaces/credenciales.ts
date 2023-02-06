@@ -21,5 +21,5 @@ export interface Response {
 
 export interface Props {
     credencial: CredencialExterna;
-    usuario: number;
+    //usuario: number;
 }
