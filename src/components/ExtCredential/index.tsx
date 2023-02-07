@@ -4,11 +4,12 @@ import { getCurrentUser } from "../../services/auth";
 import { saveExtCredentials } from "../../services/extern-credential";
 import Footer from "../Footer";
 import Navbar from "../Navbar";
+import "./ExtCredencial.css";
 
 type Props = {}
 
-const ExtCredential: React.FC<Props> = () =>{
-    const obj = JSON.parse(atob(getCurrentUser().split('.')[1])) 
+const ExtCredential: React.FC<Props> = () => {
+    const obj = JSON.parse(atob(getCurrentUser().split('.')[1]))
 
     const initialExCredentialState = {
         url: '',
@@ -29,8 +30,8 @@ const ExtCredential: React.FC<Props> = () =>{
         event.preventDefault();
         const formValue = {
             url: formData.url,
-            name:formData.name,
-            username_ext:formData.username_ext,
+            name: formData.name,
+            username_ext: formData.username_ext,
             password_ext: formData.password_ext,
             id_gestor: obj.id,
         }
@@ -43,64 +44,62 @@ const ExtCredential: React.FC<Props> = () =>{
             },
             (error) => {
                 const resMessage =
-                (error.response &&
-                  error.response.data &&
-                  error.response.data.error) ||
-                error.message ||
-                error.toString();
-              setMessage(resMessage);
+                    (error.response &&
+                        error.response.data &&
+                        error.response.data.error) ||
+                    error.message ||
+                    error.toString();
+                setMessage(resMessage);
             }
-          );
-          console.log(formValue);
+        );
+        console.log(formValue);
     };
     return (
         <div className="App">
-            <Navbar/>
-            <div className="container mt-4">
-                <div className="card w-75 m-auto">
-                <div className="card-header">
-                <h4>Sitio Externo (Credenciales)</h4>
+            <Navbar />
+            <div className="site-externo">
+                <div className="head-externa">
+                    <h2>Sitio Externo</h2>
+                    <p>Simulación</p>
                 </div>
-                <div className="card-body">
-                {message && (
-                            <div className="form-group mt-2">
-                                <div className={successful ? "alert alert-success" : "alert alert-danger"} role="alert">
+                <div className="body-externa">
+                    {message && (
+                        <div className="form-group mt-2">
+                            <div className={successful ? "alert alert-success" : "alert alert-danger"} role="alert">
                                 {message}
-                                </div>
                             </div>
-                        )}
-                    <form method="post" onSubmit={handleExtCredent} className="row mb-2">
-                    <div className="col-12">
-                    <label htmlFor="exampleFormControlInput1" className="form-label d-flex">URL:</label>
-                        <input type="text" name="url" className="form-control" id="url" value={formData.url} onChange={handleInputChange}/>
-                    </div>
-                    <div className="col-12">
-                    <label htmlFor="name" className="form-label d-flex">Name:</label>
-                        <input type="text" name="name" className="form-control" id="name"value={formData.name}onChange={handleInputChange}/>
-                    </div>
-                    <div className="col-12">
-                    <label htmlFor="name" className="form-label d-flex">Username Ext:</label>
-                        <input type="text"className="form-control" id="username_ext"name="username_ext"
-                        value={formData.username_ext}onChange={handleInputChange}/>
-                    </div>
-                    <div className="col-12">
-                    <label htmlFor="name" className="form-label d-flex">Password Ext:</label>
-                        <input type="text"className="form-control" id="password_ext"name="password_ext"
-                        value={formData.password_ext}onChange={handleInputChange}/>
-                    </div>
-                    
-                    <div className="col-12 mt-4 ">
-                      <div className="d-flex justify-content-end">
-                        <button type="submit" className="btn btn-primary me-2">Añadir</button>
-                        <a href="/home" className="btn btn-secondary">Cancelar</a>
-                      </div>                     
-                    </div>
+                        </div>
+                    )}
+                    <form method="post" onSubmit={handleExtCredent} className="row mb-2 modal-cont">
+                        <div className="col-12 row-externa">
+                            <label htmlFor="exampleFormControlInput1" className="form-label d-flex">URL:</label>
+                            <input type="text" name="url" className="form-control" id="url" value={formData.url} onChange={handleInputChange} placeholder="Url del sitio externo" />
+                        </div>
+                        <div className="col-12 row-externa">
+                            <label htmlFor="name" className="form-label d-flex">Name:</label>
+                            <input type="text" name="name" className="form-control" id="name" placeholder="Name del sitio externo" value={formData.name} onChange={handleInputChange} />
+                        </div>
+                        <div className="col-12 row-externa">
+                            <label htmlFor="name" className="form-label d-flex">Username Ext:</label>
+                            <input type="text" className="form-control" id="username_ext" name="username_ext"
+                                value={formData.username_ext} onChange={handleInputChange} placeholder="Usuario del sitio externo" />
+                        </div>
+                        <div className="col-12 row-externa">
+                            <label htmlFor="name" className="form-label d-flex">Password Ext:</label>
+                            <input type="text" className="form-control" id="password_ext" name="password_ext"
+                                value={formData.password_ext} onChange={handleInputChange} placeholder="Password del sitio externo" />
+                        </div>
+
+                        <div className="col-12 mt-4 footer-externo">
+                            <div className="d-flex justify-content-end">
+                                <button type="submit" className="btn btn-primary me-4 w-25 p-2">Añadir</button>
+                                <a href="/home" className="btn btn-secondary w-25 p-2">Cancelar</a>
+                            </div>
+                        </div>
                     </form>
                 </div>
             </div>
-                
-            </div>
-            <Footer/>
+            <Footer />
         </div>
     );
 }

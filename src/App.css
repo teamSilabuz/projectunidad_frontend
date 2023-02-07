@@ -1,10 +1,14 @@
-
 .App {
   text-align: center;
-  background: #6096b4 ;
+  font-family: sans-serif;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  background-image: url("https://images.vexels.com/media/users/3/158896/raw/e886bada597e8df015ed2020d54cdd2a-ilustracion-de-seguridad-del-dispositivo.jpg");
 }
+
 body {
-  background: #6096b4 ;
+  background: #6096b4;
 }
 
 .App-logo {
@@ -37,6 +41,7 @@ body {
   from {
     transform: rotate(0deg);
   }
+
   to {
     transform: rotate(360deg);
   }
