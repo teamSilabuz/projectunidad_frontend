@@ -30,9 +30,6 @@
 }
 
 .font-perfil-head {
-    /* font-family: 'Acme', sans-serif;*/
-    /* font-family: 'Londrina Solid', cursive; */
-    /* font-family: 'Oleo Script', cursive; */
     background: linear-gradient(90deg, #0575E6 0%, #00F260 98%);
     color: white;
 }
@@ -43,7 +40,6 @@
     padding-left: 25px;
     font-size: 18px;
 }
-
 
 .datos-item {
     margin: 10px 0 40px 20px;

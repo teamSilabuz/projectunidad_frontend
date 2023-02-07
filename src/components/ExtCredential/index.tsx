@@ -86,7 +86,7 @@ const ExtCredential: React.FC<Props> = () => {
                         </div>
                         <div className="col-12 row-externa">
                             <label htmlFor="name" className="form-label d-flex">Password Ext:</label>
-                            <input type="text" className="form-control" id="password_ext" name="password_ext"
+                            <input type="password" className="form-control" id="password_ext" name="password_ext"
                                 value={formData.password_ext} onChange={handleInputChange} placeholder="Password del sitio externo" />
                         </div>
 

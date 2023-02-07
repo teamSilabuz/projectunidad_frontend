@@ -8,7 +8,6 @@ import { getCurrentUser } from "../../services/auth";
 export const Cards: React.FC = () => {
     const API_URL = process.env.REACT_APP_API_EXT_CARD
     const obj = JSON.parse(atob(getCurrentUser().split('.')[1]));
-    console.log(typeof obj.id);
 
     const [credenciales, setCredenciales] = useState<CredencialExterna[]>([]);
     useEffect(() => {
@@ -21,7 +20,7 @@ export const Cards: React.FC = () => {
     return (
         <Row xs={1} md={2} className="g-1" id="card-container">
             {credenciales.map((credencial) => (
-                <CardFunction key={credencial.id} credencial={credencial} />
+                <CardFunction key={credencial.id} credencial={credencial} user_id={obj.id}/>
             ))}
         </Row>
     );
