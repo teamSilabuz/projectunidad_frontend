@@ -1,19 +1,18 @@
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import Offcanvas from 'react-bootstrap/Offcanvas';
-import { faAdd, faEnvelope, faIdCard, faMailForward, faPhone, faSignOut, faUserCheck, faUserCircle, faUserEdit } from "@fortawesome/free-solid-svg-icons";
+import { faAdd, faEnvelope, faIdCard, faPhone, faSignOut, faUserCheck, faUserCircle, faUserEdit } from "@fortawesome/free-solid-svg-icons";
 import Dropdown from 'react-bootstrap/Dropdown';
 import "./Navbar.css";
 import { useState, useEffect } from "react";
-import { getCurrentUser, logout } from "../../services/auth";
+import { logout } from "../../services/auth";
 import axios from "axios";
-import { features } from "process";
 
 function Navbar() {
-    //agregado anthony
+ 
     const [show, setShow] = useState(false);
     const handleClose = () => setShow(false);
     const handleShow = () => setShow(true);
-    //const obj = JSON.parse(atob(getCurrentUser().split('.')[1]));
+
     function handleLogout() {
         logout();
         window.location.reload();
@@ -65,7 +64,7 @@ function Navbar() {
                     </Offcanvas.Body>
                 </Offcanvas>
                 <Dropdown.Item href="/external-credential"><FontAwesomeIcon icon={faAdd} /> Añadir credencial nueva</Dropdown.Item>
-                <Dropdown.Item href="login"><FontAwesomeIcon icon={faSignOut} /> Cerrar Sesion</Dropdown.Item>
+                <Dropdown.Item onClick={handleLogout}><FontAwesomeIcon icon={faSignOut} /> Cerrar Sesion</Dropdown.Item>
             </Dropdown.Menu>
         </Dropdown>
     );

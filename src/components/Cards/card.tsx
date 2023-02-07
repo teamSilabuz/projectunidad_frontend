@@ -12,7 +12,6 @@ import img3 from "../../images/password.jpg";
 import img4 from "../../images/smscorreo.png";
 import { Props } from "../../interfaces/credenciales";
 import { sendEmail, sendSMS } from "../../services/boot";
-import { getCurrentUser } from "../../services/auth";
 
 const styles = {
     primary: {
@@ -26,7 +25,7 @@ const styles = {
     }
 }
 
-export const CardFunction: React.FC<Props> = ({ credencial }) => {
+export const CardFunction: React.FC<Props> = ({ credencial, user_id }) => {
 
     const [showChange, setShowChange] = useState(false);
     const handleCloseChange = () => { setShowChange(false); setMessage(""); }
@@ -41,10 +40,8 @@ export const CardFunction: React.FC<Props> = ({ credencial }) => {
 
     const [error, setError] = useState(null);
 
-    const obj = JSON.parse(atob(getCurrentUser().split('.')[1]));
-
     const dataBoot = {
-        id_user: obj.id,
+        id_user: user_id,
         id_credencial: credencial.id
     }
 
