@@ -4,7 +4,7 @@ import { faAdd, faEnvelope, faIdCard, faPhone, faSignOut, faUserCheck, faUserCir
 import Dropdown from 'react-bootstrap/Dropdown';
 import "./Navbar.css";
 import { useState, useEffect } from "react";
-import { logout } from "../../services/auth";
+import { getCurrentUser, logout } from "../../services/auth";
 import axios from "axios";
 
 function Navbar() {
@@ -21,11 +21,12 @@ function Navbar() {
     const [name, setName] = useState('');
     const [email, setEmail] = useState('');
     const [phoneNumber, setPhoneNumber] = useState('');
+    const obj = JSON.parse(atob(getCurrentUser().split('.')[1]));
 
     const url = String(process.env.REACT_APP_DOMAIN_API) + "/user/perfil"
 
     useEffect(() => {
-        axios.get(url)
+        axios.get(url+`/${obj.id}`)
             .then(response => {
                 setName(response.data.message.name);
                 setEmail(response.data.message.email);
