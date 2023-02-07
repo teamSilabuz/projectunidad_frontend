@@ -22,6 +22,17 @@
 
 ### <div align="center">FRONTEND</div>
 
+# Demo
+
+### FRONTEND: 
+> [Deploy Passecure Frontend](https://projectunidad-frontend.vercel.app/)
+
+### BACKEND:
+> [Repositorio Backend](https://github.com/teamSilabuz/projectunidad_backend)
+
+> [APP Passecure](https://projectunidad-backend.vercel.app/api/v1/user/perfil/1)
+
+
 # Requerimientos
 
 ```bash
@@ -53,4 +64,13 @@ $ npm start
 $ npm run build
 ```
 
+# Funcionalidad
+<div>
+  <div align="center">
+    <img src="https://img001.prntscr.com/file/img001/lVY3MqbBSAeKujOYDynmfA.png" title="logo" alt="logo" width="250" height="250" />
+    <img src="https://img001.prntscr.com/file/img001/maWxGbosS66lNR0aNChANA.png" title="logo" alt="logo" width="250" height="250" />
+    <img src="https://img001.prntscr.com/file/img001/Bn7tp46cT6SoQ9Uy_uEjOg.png" title="logo" alt="logo" width="250" height="250" />
+    <img src="https://img001.prntscr.com/file/img001/NWTBG5N8Tx6N3tLowB8A1Q.png" title="logo" alt="logo" width="250" height="250" />
+  </div>
+</div>
 
