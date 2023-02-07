@@ -6,6 +6,7 @@ import "./Navbar.css";
 import { useState, useEffect } from "react";
 import { getCurrentUser, logout } from "../../services/auth";
 import axios from "axios";
+import { features } from "process";
 
 function Navbar() {
     //agregado anthony
@@ -26,20 +27,20 @@ function Navbar() {
 
     useEffect(() => {
         axios.get(url)
-        .then(response => {
-            setName(response.data.message.name);
-            setEmail(response.data.message.email);
-            setPhoneNumber(response.data.message.phone_number);
-        })
-        .catch(error => {
-            console.error(error);
-        });
+            .then(response => {
+                setName(response.data.message.name);
+                setEmail(response.data.message.email);
+                setPhoneNumber(response.data.message.phone_number);
+            })
+            .catch(error => {
+                console.error(error);
+            });
     }, []);
 
     return (
         <Dropdown>
-            <div className="navbar bg-dark text-center text-white">
-                <div className="nav_logo"> <p className="d-inline mx-2">NombreUSUARIO</p></div>
+            <div className="navbar bg-dark text-center text-white menu-perfil">
+                <div className="nav_logo"> <p className="d-inline mx-2"> Passecure </p></div>
                 <div className="nav_items">
                     <Dropdown.Toggle className="toggle" variant="success" id="dropdown-basic">
                         <FontAwesomeIcon icon={faUserCircle} /> Gestor
@@ -50,19 +51,17 @@ function Navbar() {
                 <Dropdown.Item onClick={handleShow}><FontAwesomeIcon icon={faUserCheck} /> Perfil de Usuario</Dropdown.Item>
                 <Offcanvas backdrop={false} placement={'end'} show={show} onHide={handleClose}>
 
-                    <Offcanvas.Header closeButton>
+                    <Offcanvas.Header closeButton className="font-perfil-head">
                         <Offcanvas.Title><FontAwesomeIcon icon={faUserEdit} /> Perfil</Offcanvas.Title>
                     </Offcanvas.Header>
-                    <Offcanvas.Body>
-                        <h4><FontAwesomeIcon icon={faIdCard} /> Nombre y Apellidos</h4>
-                        <h5>{name}</h5>
-                        <br />
-                        <h4><FontAwesomeIcon icon={faPhone} /> Telefono</h4>
-                        <h5>{phoneNumber}</h5>
-                        <br />
-                        <h4><FontAwesomeIcon icon={faEnvelope} /> Email de Usuario</h4>
-                        <h5>{email}</h5>
 
+                    <Offcanvas.Body className="datos-perfil">
+                        <strong>Nombre y Apellidos</strong>
+                        <p className="datos-item"><FontAwesomeIcon icon={faIdCard} /> {name}</p>
+                        <strong> Telefono</strong>
+                        <p className="datos-item"><FontAwesomeIcon icon={faPhone} /> {phoneNumber} </p>
+                        <strong> Email de Usuario</strong>
+                        <p className="datos-item"><FontAwesomeIcon icon={faEnvelope} /> {email}</p>
                     </Offcanvas.Body>
                 </Offcanvas>
                 <Dropdown.Item href="/external-credential"><FontAwesomeIcon icon={faAdd} /> Añadir credencial nueva</Dropdown.Item>

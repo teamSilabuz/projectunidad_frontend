@@ -26,7 +26,7 @@ const styles = {
     }
 }
 
-export const CardFunction: React.FC<Props> = ({ credencial}) => {
+export const CardFunction: React.FC<Props> = ({ credencial }) => {
 
     const [showChange, setShowChange] = useState(false);
     const handleCloseChange = () => { setShowChange(false); setMessage(""); }
@@ -123,19 +123,20 @@ export const CardFunction: React.FC<Props> = ({ credencial}) => {
 
 
     return (
-        <Card className="card" style={{ width: '26rem' }}>
-            <Card.Img className="mt-4" src={`https://cdn.worldvectorlogo.com/logos/${credencial.name}.svg`} />
+        <Card id="card-item">
+            <Card.Img className="logoCard" src={`https://cdn.worldvectorlogo.com/logos/${credencial.name}.svg`} />
             <Card.Body>
                 <Card.Title style={styles.body} >{credencial.name}</Card.Title>
-                <Card.Text style={styles.body}>
-                    Email:{credencial.username_ext}
-                </Card.Text><Button variant="primary" onClick={handleShow} ><FontAwesomeIcon icon={faKey} /> Cambiar password</Button>{' '}
-                <Button variant="info" onClick={handleShowChange}><FontAwesomeIcon icon={faMailBulk} /> Enviar password</Button>
+                <Card.Text style={styles.body}>{credencial.username_ext}</Card.Text>
+                <div className="card-bottons">
+                    <Button variant="primary" onClick={handleShow} ><FontAwesomeIcon icon={faKey} /> <p>Cambiar password</p></Button>{' '}
+                    <Button variant="info" onClick={handleShowChange}><FontAwesomeIcon icon={faMailBulk} /> <p>Send password</p></Button>
+                </div>
             </Card.Body>
 
             <Card.Footer className="text-muted">
-                <Modal show={showChange} onHide={handleCloseChange}>
-                    <Modal.Header closeButton>
+                <Modal show={showChange} onHide={handleCloseChange} backdrop="static" centered className="modal-cont">
+                    <Modal.Header closeButton className="modal-head">
                         <Modal.Title> Credenciales <FontAwesomeIcon icon={faUserLock} /> </Modal.Title>
                     </Modal.Header>
                     <div>
@@ -150,70 +151,74 @@ export const CardFunction: React.FC<Props> = ({ credencial}) => {
                     <img
                         src={img4}
                         alt="img4"
-                        style={{ height: '50%', width: '90%', display: "block", margin: "0 auto" }}
+                        style={{ height: '50%', width: '80%', display: "block", margin: "0 auto" }}
                     />
-                    <Modal.Title> <FontAwesomeIcon icon={faArrowTurnRight} /> Recibe tus credenciales en : </Modal.Title>
+                    <Modal.Title className="modal-tit">
+                        <FontAwesomeIcon icon={faArrowTurnRight} /> Recibe tus credenciales en :
+                        <div className="modal-sms-gmail">
+                            <form method="post" onSubmit={handleSendSMS}>
+                                <Button type="submit" variant="secondary" className="btn btn-primary position-relative">
+                                    <FontAwesomeIcon icon={faCommentSms} size="3x" beat /> SMS
+                                </Button>
+                            </form>
+                            <form method="post" onSubmit={handleSendEmail}>
+                                <Button type="submit" variant="primary">
+                                    <FontAwesomeIcon icon={faEnvelope} size="3x" bounce /> Email
+                                </Button>
+                            </form>
+                        </div>
+                    </Modal.Title>
                     <Modal.Footer>
-
-
-
-                        <form method="post" onSubmit={handleSendSMS}>
-                            <Button type="submit" variant="secondary" className="btn btn-primary position-relative">
-                                <FontAwesomeIcon icon={faCommentSms} /> SMS </Button>
-                        </form>
-                        <form method="post" onSubmit={handleSendEmail}>
-                            <Button type="submit" variant="primary">
-                                <FontAwesomeIcon icon={faEnvelope} /> Correo </Button>
-                        </form>
-
                         <Button variant="danger" onClick={handleCloseChange}>
-                            <FontAwesomeIcon icon={faX} /> Salir </Button>
-
+                            <FontAwesomeIcon icon={faX} /> Salir
+                        </Button>
                     </Modal.Footer>
                 </Modal>
 
-                <Modal show={show} onHide={handleClose}>
-                    <Modal.Header closeButton>
-                        <Modal.Title>Credenciales <FontAwesomeIcon icon={faUserLock} /></Modal.Title>
+                <Modal show={show} onHide={handleClose} backdrop="static" centered className="modal-cont">
+                    <Modal.Header closeButton className="modal-head">
+                        <Modal.Title><FontAwesomeIcon icon={faUserLock} /> Actualización Credencial </Modal.Title>
+                        <Modal.Title>{credencial.username_ext}</Modal.Title>
                     </Modal.Header>
 
                     <Modal.Body>
-                        <Form
-                            onSubmit={handleSubmit}
-                        >
-                            <Form.Group controlId="password">
+                        <Form onSubmit={handleSubmit}>
+                            <Form.Group controlId="password" className="modal-change-pass">
                                 <img
                                     src={img3}
                                     alt="img3"
-                                    style={{ height: '50%', width: '100%', display: "block", margin: "0 auto" }}
+                                    style={{ height: '45%', width: '95%', display: "block", margin: "0 auto 20px" }}
                                 />
 
-
-
-
-                                <Modal.Title>Escribir nuevo password <FontAwesomeIcon icon={faKey} />:</Modal.Title>
+                                <Modal.Title>Nuevo password <FontAwesomeIcon icon={faKey} /></Modal.Title>
                                 <Form.Control
                                     autoFocus
                                     type="password"
                                     value={password}
                                     onChange={(e) => setPassword(e.target.value)}
+                                    placeholder="Digite su nuevo password"
+                                    className="text-pass"
                                 />
-                                <Modal.Title>Confirmar password:</Modal.Title>
+                                <Modal.Title>Confirmar password</Modal.Title>
                                 <Form.Control
                                     autoFocus
                                     type="password"
                                     value={rePassword}
                                     onChange={(e) => setRePassword(e.target.value)}
+                                    placeholder="Confirme su password"
+                                    className="text-pass"
                                 />
                                 {error && <p style={{ color: "red" }}>{error}</p>}
-                                <Button type="submit"> <FontAwesomeIcon icon={faKey} /> Confirmar nuevo password  </Button> {' '}
+                                <Button type="submit"> <FontAwesomeIcon icon={faKey} /> Actualizar password  </Button> {' '}
                             </Form.Group>
-                            <Button variant="danger" onClick={handleClose}> <FontAwesomeIcon icon={faX} /> Cancelar </Button>
+                            <Modal.Footer>
+                                <Button variant="danger" onClick={handleClose}>
+                                    <FontAwesomeIcon icon={faX} /> Cancelar
+                                </Button>
+                            </Modal.Footer>
                         </Form>
 
                     </Modal.Body>
-
-
                 </Modal>
                 <small className="text-muted">Ultima vez modificado: {credencial.createdAt}</small>
             </Card.Footer>

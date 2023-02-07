@@ -1,23 +1,107 @@
-img {
-    width: 140px;
-    height: 150px;
-    object-fit: contain;
-  }
+    /* font-family: 'Source Sans Pro', sans-serif; */
+    /*font-family: 'PT Sans', sans-serif;*/
+    /* font-family: 'Bai Jamjuree', sans-serif; */
+    /* font-family: 'Baloo', cursive; */
+    /* font-family: 'Patua One', cursive; */
+    /* font-family: 'Bitter', serif; */
+    /* font-family: 'Fjalla One', sans-serif; */
+    /* font-family: 'Be Vietnam', sans-serif; */
+    /* font-family: 'Nanum Gothic', sans-serif; */
+    /* font-family: 'Ubuntu', sans-serif; */
+    /* font-family: 'Satisfy', cursive; */
+    /* font-family: 'Acme', sans-serif; */
 
-  title{
-    text-align: left;
-  }
 
-.card {
-    border-style: solid;
-    border-color: black;
-    margin-top: 20px;
-    margin-left: auto;
-    margin-bottom: 30px;
-    margin-block: 20px;
-    margin-inline: 20px;
-  } 
+    img {
+      width: 140px;
+      height: 150px;
+      object-fit: contain;
+    }
 
-.Row{
+    title {
+      text-align: left;
+    }
+
+    #card-container {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(310px, 1fr));
+      gap: 30px;
+      margin: 40px 30px 0;
+    }
+
+    #card-item {
+      background-color: white;
+      margin: auto;
+      font-family: 'Acme', sans-serif;
+      box-shadow: 2px 5px 12px 5px #ffffff;
+      width: 365px;
+      border: 1px solid darkgrey;
+      border-radius: 20px;
+    }
+
+    .card-body {
+      padding: 0 10px;
+    }
+
+    .logoCard {
+      border: 1px solid transparent;
+      border-radius: 20px;
+      padding: 20px 10px 5px;
+      border-bottom: 1px solid #673ab7;
+    }
+
+    .card-bottons {
+      display: flex;
+      gap: 30px;
+      justify-content: center;
+    }
+
+    .card-bottons button {
+      width: 140px;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      margin-bottom: 0;
+    }
+
+    .card-bottons button p {
+      margin: 0;
+    }
+
+    .modal-sms-gmail {
+      display: flex;
+      padding: 10px;
+      justify-content: center;
+      gap: 40px;
+    }
+
+    .modal-cont {
+      font-family: 'Acme', sans-serif;
+    }
+
+    .modal-head {
+      background: linear-gradient(90deg, #e00f74 0%, #ff6a00 75%);
+      color: white;
+      display: flex;
+      flex-direction: column;
+    }
+
+    .modal-tit {
+      padding-left: 15px;
+    }
+
+    .modal-change-pass {
+      padding: 0 15px;
+    }
+
+    .modal-content .text-pass {
+      margin-bottom: 20px;
+    }
+
+
+
+    /* .card-bottons button:nth-child(2) {
+  width: 120px;
   display: flex;
-}
+  align-items: center;
+} */
